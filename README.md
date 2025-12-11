@@ -4,7 +4,7 @@
 ### 1️⃣ Cloner le projet
 
 ```bash
-git clone https://github.com/ton-compte/ambulance-management.git
+git clone git@github.com:elYugen/AmbuGaz.git
 cd ambulance-management
 
 2️⃣ Installer les dépendances PHP
