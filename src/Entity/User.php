@@ -46,7 +46,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\ManyToOne(inversedBy: 'users')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Company $company_id = null;
+    private ?Company $company = null;
 
     /**
      * @var Collection<int, UserDocuments>
@@ -177,14 +177,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCompanyId(): ?Company
+    public function getCompany(): ?Company
     {
-        return $this->company_id;
+        return $this->company;
     }
 
-    public function setCompanyId(?Company $company_id): static
+    public function setCompany(?Company $company): static
     {
-        $this->company_id = $company_id;
+        $this->company = $company;
 
         return $this;
     }

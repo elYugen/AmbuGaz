@@ -148,7 +148,7 @@ class Company
     {
         if (!$this->users->contains($user)) {
             $this->users->add($user);
-            $user->setCompanyId($this);
+            $user->setCompany($this);
         }
 
         return $this;
@@ -158,8 +158,8 @@ class Company
     {
         if ($this->users->removeElement($user)) {
             // set the owning side to null (unless already changed)
-            if ($user->getCompanyId() === $this) {
-                $user->setCompanyId(null);
+            if ($user->getCompany() === $this) {
+                $user->setCompany(null);
             }
         }
 
@@ -178,7 +178,7 @@ class Company
     {
         if (!$this->vehicles->contains($vehicle)) {
             $this->vehicles->add($vehicle);
-            $vehicle->setCompanyId($this);
+            $vehicle->setCompany($this);
         }
 
         return $this;
@@ -188,8 +188,8 @@ class Company
     {
         if ($this->vehicles->removeElement($vehicle)) {
             // set the owning side to null (unless already changed)
-            if ($vehicle->getCompanyId() === $this) {
-                $vehicle->setCompanyId(null);
+            if ($vehicle->getCompany() === $this) {
+                $vehicle->setCompany(null);
             }
         }
 
@@ -208,7 +208,7 @@ class Company
     {
         if (!$this->companyDocuments->contains($companyDocument)) {
             $this->companyDocuments->add($companyDocument);
-            $companyDocument->setCompanyId($this);
+            $companyDocument->setCompany($this);
         }
 
         return $this;
@@ -218,8 +218,8 @@ class Company
     {
         if ($this->companyDocuments->removeElement($companyDocument)) {
             // set the owning side to null (unless already changed)
-            if ($companyDocument->getCompanyId() === $this) {
-                $companyDocument->setCompanyId(null);
+            if ($companyDocument->getCompany() === $this) {
+                $companyDocument->setCompany(null);
             }
         }
 
@@ -238,7 +238,7 @@ class Company
     {
         if (!$this->tasks->contains($task)) {
             $this->tasks->add($task);
-            $task->setCompanyId($this);
+            $task->setCompany($this);
         }
 
         return $this;
@@ -248,8 +248,8 @@ class Company
     {
         if ($this->tasks->removeElement($task)) {
             // set the owning side to null (unless already changed)
-            if ($task->getCompanyId() === $this) {
-                $task->setCompanyId(null);
+            if ($task->getCompany() === $this) {
+                $task->setCompany(null);
             }
         }
 
@@ -268,7 +268,7 @@ class Company
     {
         if (!$this->inventoryItems->contains($inventoryItem)) {
             $this->inventoryItems->add($inventoryItem);
-            $inventoryItem->setCompanyId($this);
+            $inventoryItem->setCompany($this);
         }
 
         return $this;
@@ -278,8 +278,8 @@ class Company
     {
         if ($this->inventoryItems->removeElement($inventoryItem)) {
             // set the owning side to null (unless already changed)
-            if ($inventoryItem->getCompanyId() === $this) {
-                $inventoryItem->setCompanyId(null);
+            if ($inventoryItem->getCompany() === $this) {
+                $inventoryItem->setCompany(null);
             }
         }
 
