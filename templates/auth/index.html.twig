@@ -51,8 +51,8 @@
                         <h3 class="text-xl font-bold">Entreprise</h3>
                     </div>
                     {# 👇 Utilise companyId au lieu de company #}
-                    {% if app.user.companyId %}
-                        <p class="text-green-100 text-lg font-semibold">{{ app.user.companyId.name }}</p>
+                    {% if app.user.company %}
+                        <p class="text-green-100 text-lg font-semibold">{{ app.user.company.name }}</p>
                     {% else %}
                         <p class="text-green-100">Non définie</p>
                     {% endif %}
@@ -107,7 +107,7 @@
                     <p>✅ Session active</p>
                     <p>🔐 Authentifié</p>
                     <p>📍 ID Utilisateur : <span class="font-mono">{{ app.user.id }}</span></p>
-                    <p>🏢 ID Entreprise : <span class="font-mono">{{ app.user.companyId ? app.user.companyId.id : 'N/A' }}</span></p>
+                    <p>🏢 ID Entreprise : <span class="font-mono">{{ app.user.company ? app.user.company.id : 'N/A' }}</span></p>
                 </div>
             </div>
         </div>

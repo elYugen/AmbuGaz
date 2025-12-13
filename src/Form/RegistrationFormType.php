@@ -30,14 +30,12 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('firstName', TextType::class, [  // 👈 Changé de first_name
                 'label' => 'Prénom',
-                'property_path' => 'first_name',  // 👈 Mapping vers la propriété réelle
                 'constraints' => [
                     new Assert\NotBlank(message: 'Prénom requis'),
                 ],
             ])
             ->add('lastName', TextType::class, [  // 👈 Changé de last_name
                 'label' => 'Nom',
-                'property_path' => 'last_name',  // 👈 Mapping vers la propriété réelle
                 'constraints' => [
                     new Assert\NotBlank(message: 'Nom requis'),
                 ],
@@ -53,7 +51,6 @@ class RegistrationFormType extends AbstractType
                 'class' => Company::class,
                 'choice_label' => 'name',
                 'placeholder' => 'Sélectionnez une entreprise',
-                'property_path' => 'company_id',  // 👈 Mapping vers la propriété réelle
                 'constraints' => [
                     new Assert\NotBlank(message: 'Entreprise requise'),
                 ],
