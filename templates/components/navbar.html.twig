@@ -1,0 +1,150 @@
+{# templates/components/_navbar.html.twig #}
+<nav class="bg-gray-800 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            {# Logo et liens principaux #}
+            <div class="flex">
+                {# Logo #}
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="{{ path('auth_index') }}" class="text-white text-xl font-bold">
+                        MonApp
+                    </a>
+                </div>
+
+                {# Navigation principale (desktop) #}
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <a href="{{ path('auth_index') }}" 
+                           class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium inline-flex items-center {{ app.request.attributes.get('_route') == 'auth_index' ? 'bg-gray-900 text-white' : '' }}">
+                            Dashboard
+                        </a>
+                        
+                        <a href="{{ path('app_company_index') }}" 
+                           class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium inline-flex items-center {{ app.request.attributes.get('_route') starts with 'app_company' ? 'bg-gray-900 text-white' : '' }}">
+                            Companies
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            {# Menu utilisateur (desktop) #}
+            <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {# Dropdown utilisateur #}
+                    <div class="ml-3 relative">
+                        <div>
+                            <button onclick="toggleUserMenu()" 
+                                    type="button" 
+                                    class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                                <span class="sr-only">Open user menu</span>
+                                <div class="h-8 w-8 rounded-full bg-gray-600 flex items-center justify-center text-white font-semibold">
+                                    {{ app.user.email|first|upper }}
+                                </div>
+                            </button>
+                        </div>
+
+                        <div id="userMenu" 
+                             class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
+                            <div class="px-4 py-2 text-xs text-gray-400">
+                                {{ app.user.email }}
+                            </div>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Profil
+                            </a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Paramètres
+                            </a>
+                            <hr class="my-1">
+                            <a href="{{ path('app_logout') }}" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                                Déconnexion
+                            </a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="flex items-center space-x-4">
+                        <a href="{{ path('app_login') }}" 
+                           class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                            Connexion
+                        </a>
+                        <a href="{{ path('app_register') }}" 
+                           class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+                            Inscription
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+
+            {# Menu mobile button #}
+            <div class="flex items-center sm:hidden">
+                <button onclick="toggleMobileMenu()" 
+                        type="button" 
+                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    {# Menu mobile #}
+    <div id="mobileMenu" class="hidden sm:hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a href="{{ path('auth_index') }}" 
+                   class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium {{ app.request.attributes.get('_route') == 'auth_index' ? 'bg-gray-900 text-white' : '' }}">
+                    Dashboard
+                </a>
+                <a href="{{ path('app_company_index') }}" 
+                   class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium {{ app.request.attributes.get('_route') starts with 'app_company' ? 'bg-gray-900 text-white' : '' }}">
+                    Companies
+                </a>
+                <hr class="my-2 border-gray-700">
+                <div class="px-3 py-2 text-xs text-gray-400">
+                    {{ app.user.email }}
+                </div>
+                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                    Profil
+                </a>
+                <a href="{{ path('app_logout') }}" class="text-red-400 hover:bg-gray-700 hover:text-red-300 block px-3 py-2 rounded-md text-base font-medium">
+                    Déconnexion
+                </a>
+            {% else %}
+                <a href="{{ path('app_login') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                    Connexion
+                </a>
+                <a href="{{ path('app_register') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                    Inscription
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+<script>
+// Toggle dropdown utilisateur
+function toggleUserMenu() {
+    const menu = document.getElementById('userMenu');
+    menu.classList.toggle('hidden');
+}
+
+// Toggle menu mobile
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('hidden');
+}
+
+// Fermer les menus en cliquant à l'extérieur
+document.addEventListener('click', function(event) {
+    const userMenu = document.getElementById('userMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    // Si le clic n'est pas sur un bouton de menu
+    if (!event.target.closest('button')) {
+        if (userMenu && !userMenu.classList.contains('hidden')) {
+            userMenu.classList.add('hidden');
+        }
+    }
+});
+</script>
