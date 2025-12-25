@@ -1,13 +1,178 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Company{% endblock %}
+{% block title %}Modifier l'entreprise{% endblock %}
 
 {% block body %}
-    <h1>Edit Company</h1>
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
+    <div class="max-w-3xl mx-auto">
+        <!-- Card principale -->
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-6">
+                <h1 class="text-3xl font-bold text-white">Modifier l'entreprise</h1>
+            </div>
 
-    {{ include('company/_form.html.twig', {'button_label': 'Update'}) }}
+            <!-- Formulaire -->
+            <div class="p-8">
+                <div class="symfony-form-wrapper">
+                    {{ include('company/_form.html.twig', {'button_label': 'Enregistrer les modifications'}) }}
+                </div>
+            </div>
 
-    <a href="{{ path('app_company_index') }}">back to list</a>
+            <!-- Footer avec actions -->
+            <div class="bg-gray-50 px-8 py-4 border-t border-gray-200 flex items-center justify-between">
+                <a href="{{ path('app_company_index') }}" 
+                   class="inline-flex items-center gap-2 text-gray-600 hover:text-gray-800 font-medium transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                    </svg>
+                    Retour à la liste
+                </a>
+                
+                {% if is_granted('ROLE_DEV') %}
+                    <div class="delete-form-wrapper">
+                        {{ include('company/_delete_form.html.twig') }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 
-    {{ include('company/_delete_form.html.twig') }}
+<style>
+/* Reset et structure du formulaire */
+.symfony-form-wrapper form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.symfony-form-wrapper form > div {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels */
+.symfony-form-wrapper label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+/* Inputs et textarea */
+.symfony-form-wrapper input[type="text"],
+.symfony-form-wrapper input[type="email"],
+.symfony-form-wrapper input[type="tel"],
+.symfony-form-wrapper input[type="number"],
+.symfony-form-wrapper textarea,
+.symfony-form-wrapper select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #D1D5DB;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.2s;
+    background-color: white;
+}
+
+.symfony-form-wrapper input:focus,
+.symfony-form-wrapper textarea:focus,
+.symfony-form-wrapper select:focus {
+    outline: none;
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Messages d'erreur */
+.symfony-form-wrapper .invalid-feedback,
+.symfony-form-wrapper .form-error-message {
+    color: #DC2626;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* Bouton Submit principal - cibler TOUS les types de boutons */
+.symfony-form-wrapper button,
+.symfony-form-wrapper input[type="submit"],
+.symfony-form-wrapper button[type="submit"] {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: #2563EB !important;
+    color: white !important;
+    padding: 0.875rem 2rem !important;
+    border-radius: 0.5rem !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    transition: all 0.2s;
+    border: none !important;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+    margin-top: 1rem;
+}
+
+.symfony-form-wrapper button:hover,
+.symfony-form-wrapper input[type="submit"]:hover,
+.symfony-form-wrapper button[type="submit"]:hover {
+    background-color: #1D4ED8 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.symfony-form-wrapper button:active,
+.symfony-form-wrapper input[type="submit"]:active,
+.symfony-form-wrapper button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* Icône pour le bouton submit */
+.symfony-form-wrapper button::before,
+.symfony-form-wrapper input[type="submit"]::before,
+.symfony-form-wrapper button[type="submit"]::before {
+    content: "✓";
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+/* Bouton Delete - plus spécifique */
+.delete-form-wrapper form {
+    display: inline;
+}
+
+.delete-form-wrapper button,
+.delete-form-wrapper button[type="submit"],
+.delete-form-wrapper input[type="submit"] {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #DC2626 !important;
+    color: white !important;
+    padding: 0.5rem 1.25rem !important;
+    border-radius: 0.5rem !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    transition: all 0.2s;
+    border: none !important;
+    cursor: pointer;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1) !important;
+    margin-top: 0 !important;
+}
+
+.delete-form-wrapper button:hover,
+.delete-form-wrapper button[type="submit"]:hover,
+.delete-form-wrapper input[type="submit"]:hover {
+    background-color: #B91C1C !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+.delete-form-wrapper button::before,
+.delete-form-wrapper button[type="submit"]::before,
+.delete-form-wrapper input[type="submit"]::before {
+    content: "🗑️";
+    font-size: 1rem;
+}
+</style>
 {% endblock %}
