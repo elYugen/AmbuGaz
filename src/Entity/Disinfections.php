@@ -19,14 +19,14 @@ class Disinfections
 
     #[ORM\ManyToOne(inversedBy: 'disinfections')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Vehicle $vehicle_id = null;
+    private ?Vehicle $vehicle = null;
 
     #[ORM\Column(length: 255)]
     private ?string $disinfectionType = null;
 
     #[ORM\ManyToOne(inversedBy: 'disinfections')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $user_id = null;
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -45,14 +45,14 @@ class Disinfections
         return $this;
     }
 
-    public function getVehicleId(): ?Vehicle
+    public function getVehicle(): ?Vehicle
     {
-        return $this->vehicle_id;
+        return $this->vehicle;
     }
 
-    public function setVehicleId(?Vehicle $vehicle_id): static
+    public function setVehicle(?Vehicle $vehicle): static
     {
-        $this->vehicle_id = $vehicle_id;
+        $this->vehicle = $vehicle;
 
         return $this;
     }
@@ -69,14 +69,14 @@ class Disinfections
         return $this;
     }
 
-    public function getUserId(): ?User
+    public function getUser(): ?User
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?User $user_id): static
+    public function setUser(?User $user): static
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }
