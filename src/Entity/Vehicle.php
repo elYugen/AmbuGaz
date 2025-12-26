@@ -150,7 +150,7 @@ class Vehicle
     {
         if (!$this->disinfections->contains($disinfection)) {
             $this->disinfections->add($disinfection);
-            $disinfection->setVehicleId($this);
+            $disinfection->setVehicle($this);
         }
 
         return $this;
@@ -160,8 +160,8 @@ class Vehicle
     {
         if ($this->disinfections->removeElement($disinfection)) {
             // set the owning side to null (unless already changed)
-            if ($disinfection->getVehicleId() === $this) {
-                $disinfection->setVehicleId(null);
+            if ($disinfection->getVehicle() === $this) {
+                $disinfection->setVehicle(null);
             }
         }
 

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Disinfections{% endblock %}
+
+{% block body %}
+    <h1>Edit Disinfections</h1>
+
+    {{ include('disinfections/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_disinfections_index') }}">back to list</a>
+
+    {{ include('disinfections/_delete_form.html.twig') }}
+{% endblock %}

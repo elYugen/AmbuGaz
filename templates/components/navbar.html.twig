@@ -23,6 +23,14 @@
                            class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium inline-flex items-center {{ app.request.attributes.get('_route') starts with 'app_company' ? 'bg-gray-900 text-white' : '' }}">
                             Companies
                         </a>
+                        <a href="{{ path('app_vehicle_index') }}" 
+                           class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium inline-flex items-center {{ app.request.attributes.get('_route') starts with 'app_company' ? 'bg-gray-900 text-white' : '' }}">
+                            Véhicles
+                        </a>
+                        <a href="{{ path('app_disinfections_index') }}" 
+                           class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium inline-flex items-center {{ app.request.attributes.get('_route') starts with 'app_company' ? 'bg-gray-900 text-white' : '' }}">
+                            Disinfections
+                        </a>
                     {% endif %}
                 </div>
             </div>

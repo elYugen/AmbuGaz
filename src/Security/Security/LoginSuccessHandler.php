@@ -20,11 +20,11 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
 
         // Redirige selon le rôle le plus élevé
         if (in_array('ROLE_DEV', $roles)) {
-            return new RedirectResponse($this->router->generate('dev_dashboard'));
+            return new RedirectResponse($this->router->generate('admin'));
         }
         
         if (in_array('ROLE_ADMIN', $roles)) {
-            return new RedirectResponse($this->router->generate('admin_dashboard'));
+            return new RedirectResponse($this->router->generate('auth_index'));
         }
 
         // Par défaut, ROLE_USER
